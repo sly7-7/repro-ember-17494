@@ -1,0 +1,23 @@
+<p>
+    This route accepts the `detail` query param.
+</p>
+<p>
+    Clicking this button will tell the router service to transition to '/'
+    and then without waiting for it to complete, will tell it to transition
+    back to this route, specifying a value for the `detail` query param.
+    If you watch the console, you'll see an error throws from within the
+    router service that looks like this:
+</p>
+<pre style="color: red">
+VM58 about:srcdoc:74 Uncaught (in promise) Error: Assertion Failed: You passed the `my-route:detailId` query parameter during a transition into my-route, please update to detail
+    at assert (ember.debug.js:35787)
+    at Class._hydrateUnsuppliedQueryParams (ember.debug.js:23017)
+    at Class._prepareQueryParams (ember.debug.js:22841)
+    at Class._doTransition (ember.debug.js:22789)
+    at RouterService.transitionTo (ember.debug.js:18623)
+    at MyRouteController.doTransition (VM58 about:srcdoc:69)
+</pre>
+
+<button type="button" {{on "click" this.doTransition}}>click me</button>
+
+<div>Controller QP:{{this.detailId}}</div>
